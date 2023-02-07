@@ -2,14 +2,14 @@
 
 We present here the code we have used to develop our Spiking Neural Network (SNN), capable of accurately estimating optical flow from event data. Our main contributions are:
 
-- 3d encoders for temporal dependencies
-- novel loss function
-- stateless snn
-- accurate results on DSEC
+- A novel angular loss term which, in conjunction with a standard MSE error function, greatly improves the network's performance and generalization. To the best of our knowledge, we are the first to use such a loss function.
+- A model capable of handling temporal dependencies thanks to 3d convolutions on the encoder over consecutive time frames along a temporal axis.
+- A stateless SNN, i.e. a model where a reset is performed after each forward pass), that could be implemented on neuromorphic hardware, thus taking advantage of the energy efficiency of such devices.
+- accurate results on DSEC (WIP)
 
-We have used the DSEC Dataset () to train and evaluate our models, and we report our performance on their official optical flow benchmark.
+We have used the DSEC Dataset (https://dsec.ifi.uzh.ch) to train and evaluate our models, and we report our performance on their official optical flow benchmark.
 
-Our network has been developped with PyTorch (https://pytorch.org/), and we have used the SpikingJelly library (https://github.com/fangwei123456/spikingjelly) for our spiking neuron model. We have used the SpikingJelly version 0.0.0.0.13.
+Our network has been developped with PyTorch (https://pytorch.org/), and we have used the SpikingJelly library (https://github.com/fangwei123456/spikingjelly) for our spiking neuron model, using surrogate gradient learning in our supervised training algorithm. We have used the SpikingJelly version 0.0.0.0.13.
 
 Below can be found an example of the results obtained with our model, evaluated on our validation set. Each quadrant represents:
 - Upper-left: Optical Flow ground-truth.
