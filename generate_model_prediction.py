@@ -11,7 +11,7 @@ from torch.autograd import Variable
 from spikingjelly.clock_driven import functional
 from spikingjelly.clock_driven import neuron
 
-from network_3d.poolingNet_stereospike_real_cat_1res import NeuronPool_Separable_Pool3d
+from network_3d.poolingNet_cat_1res import NeuronPool_Separable_Pool3d
 
 
 from tqdm import tqdm
@@ -51,7 +51,7 @@ valid_dataloader = torch.utils.data.DataLoader(dataset = valid_dataset, batch_si
 # Create the network
 
 net = NeuronPool_Separable_Pool3d().to(device)
-net.load_state_dict(torch.load('results/mono_k5_p2_1res_9ms_2pol_cat_wDA_lr2e-4_FULL/test_epoch55.pth'))
+net.load_state_dict(torch.load('examples/checkpoint_epoch34.pth'))
 
 
 ##########
@@ -97,7 +97,7 @@ for chunk, mask, label in tqdm(valid_dataloader):
 pred_sequence = np.array(pred_sequence)
 label_sequence = np.array(label_sequence)
 
-videofile = 'results/mono_k5_p2_2res_9ms_2pol_sum_wDA_lr2e-4/flow_test_epoch29.mp4'
+videofile = 'results/flow_valid_epoch34.mp4'
 
 plot_evolution(label_sequence, pred_sequence, mask_sequence, 10, videofile)
 
