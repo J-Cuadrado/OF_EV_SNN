@@ -20,6 +20,28 @@ Below can be found an example of the results obtained with our model, evaluated 
 ![ezgif-2-ec655c32b9](https://user-images.githubusercontent.com/71754039/217257601-344dc0f9-f58c-4981-b9b1-21b46b35751e.gif)
 
 
+## Data Structure
+
+We suggest placing DSEC in the data folder, following the next structure
+
+```
+data/
+    ├── dataset/
+    │      ├─── raw_files/
+    │      └─── saved_flow_data/
+    │           ├── event_tensors/
+    │           │   ├── 11frames/
+    │           │   |   ├── left/
+    │           │   |   └── ...
+    |           |   └── ...
+    │           ├── gt_tensors/
+    │           ├── mask_tensors/
+    │           └── sequence_lists/
+    └── ...  
+```
+
+The ```raw_files/``` folder contains the data downloaded from the DSEC webpage. After executing the code, different arrays will be created for each chunk, each stored in the corresponding folder. The number of frames per label used can be found in the subdirectories of the ```event_tensors/``` folder (in this case, 11 frames per timestamp = 9ms histograms).
+
 ## References
 
 WIP
