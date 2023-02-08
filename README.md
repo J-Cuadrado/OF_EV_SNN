@@ -1,5 +1,7 @@
 # Optical Flow estimation from Event Cameras and Spiknig Neural Networks
 
+## Introduction
+
 We present here the code we have used to develop our Spiking Neural Network (SNN), capable of accurately estimating optical flow from event data. Our main contributions are:
 
 - A novel angular loss term which, in conjunction with a standard MSE error function, greatly improves the network's performance and generalization. To the best of our knowledge, we are the first to use such a loss function.
@@ -19,10 +21,20 @@ Below can be found an example of the results obtained with our model, evaluated 
 
 ![ezgif-2-ec655c32b9](https://user-images.githubusercontent.com/71754039/217257601-344dc0f9-f58c-4981-b9b1-21b46b35751e.gif)
 
+## Installation
 
-## Data Structure
+WIP
 
-We suggest placing DSEC in the data folder, following the next structure
+## Codes
+
+Three "core" codes are presented in this repository:
+- ```train_3dNet_cat_1res.py```: main code of the repository, containing the training loop and a test loop on both the train and the validation splits.
+- ```test_network_metrics.py```: code used to report the metrics of a saved model. Both angular loss and mod loss are reported.
+- ```generate_model_prediction.py```: visualization code, it creates a video with the network predictions (see .gif above for an extract of one such video).
+
+## Data Storage Structure
+
+We suggest placing DSEC in the ```data/``` folder, following the next structure
 
 ```
 data/
