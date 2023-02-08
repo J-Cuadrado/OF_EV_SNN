@@ -1,0 +1,19 @@
+# minimal requirements
+numpy
+pandas
+torch
+torchvision
+spikingjelly==0.0.0.0.13
+opencv-python
+imageio
+numba
+h5py
+hdf5plugin
+tqdm
+
+# required by spikingjelly, but not necessary to us
+loris
+torchaudio
+ninja
+
+# We recommend installing wandb for logs, but it is not necessary
