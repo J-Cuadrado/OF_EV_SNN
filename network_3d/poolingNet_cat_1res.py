@@ -6,7 +6,6 @@ from torch.nn.parameter import Parameter
 
 from spikingjelly.clock_driven import neuron, layer
 
-
 from .blocks import SeparableSEWResBlock
 
 
