@@ -2,11 +2,8 @@ import random
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 import torchvision.transforms as TvT
-
-from torch.autograd import Variable
 
 from spikingjelly.clock_driven import functional
 from spikingjelly.clock_driven import neuron
@@ -20,18 +17,9 @@ from data.data_augmentation_2d import *
 
 import numpy as np
 
-
 from eval.vector_loss_functions import * 
-from eval.metrics_v2 import compute_metrics
 
-import math
 import os
-
-import wandb
-
-# Create WandB session
-
-wandb.init(project="Dec2022-Tests")
 
 # Enable GPU
 device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
@@ -54,7 +42,7 @@ def set_random_seed(seed):
     # NumPy
     np.random.seed(seed)
 
-seed = 2305
+seed = 1234
 set_random_seed(seed)
 
 ################################
@@ -102,7 +90,7 @@ for m in net.modules():
 
 
 # Create the optimizer
-lr = 2e-4 # used to be 2e-4
+lr = 2e-4
 wd = 1e-2
 optimizer = torch.optim.AdamW(net.parameters(), lr = lr, weight_decay = wd)
 scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones = [10, 20, 35], gamma = 0.5)
@@ -125,20 +113,6 @@ n_epochs = 35
 # Decide whether or not to store the network
 save_net = True
 test_acc = float('inf')
-
-################
-## WANDB LOGS ##
-################
-
-wandb.config.trainable_params = trainable_params
-wandb.config.lr = lr
-wandb.config.weight_decay = wd
-wandb.config.epochs = n_epochs
-wandb.config.seed = seed
-wandb.config.forward_labels = forward_labels
-wandb.config.num_frames_per_label = num_frames_per_ts
-wandb.config.batch_size = batch_size
-wandb.config.effective_batch_size = batch_size * batch_multiplyer
 
 #####################
 ## SETUP FUNCTIONS ##
@@ -203,11 +177,15 @@ for epoch in range(n_epochs):
             curr_loss += lambda_mod * mod_loss + lambda_ang * ang_loss
         
         # We manually verify that the gradients are not exploding
+        # If that is the case, the problem can be solved by increasing the network's "multiply_factor" attribute
+        # It is equivalent to diminishing the firing threshold, and therefore encourages spike activity
         if np.isnan(curr_loss.item()):
             raise
 
         curr_loss.backward()
 
+        # When memory is a concern, we can artifically increase the batch size.
+        # To do so, we make several gradient accumulations before the optimizer step
         batch_iter += 1
         if batch_iter % batch_multiplyer == 0:
             nn.utils.clip_grad_norm_(net.parameters(), max_norm=0.5, norm_type=2)
@@ -314,24 +292,12 @@ for epoch in range(n_epochs):
     print('Epoch loss (Validation): {} \n'.format(epoch_loss_valid))
     
     # Save the network
-
+    # We only save the network if it beats the previous best result (mod loss) on the validation set
     if save_net & (epoch_loss_valid < test_acc):       
 
         test_acc = epoch_loss_valid
-        torch.save(net.state_dict(), 'results/mono_k5_p2_1res_9ms_1pol_cat_wDA_lr2e-4_split2/test_epoch{}.pth'.format(epoch))
-    
-    
+        torch.save(net.state_dict(), 'results/checkpoint_epoch{}.pth'.format(epoch))
 
-
-    # WandB log
-    wandb.log({
-        'train_mod_loss': epoch_mod_loss,
-        'train_ang_loss': epoch_ang_loss,
-        'train_total_loss': epoch_loss_train_eval,
-        'test_mod_loss': epoch_mod_loss_test,
-        'test_ang_loss': epoch_ang_loss_test,
-        'test_total_loss': epoch_loss_valid,
-    })
 
     scheduler.step()
 
