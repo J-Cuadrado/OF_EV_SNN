@@ -41,6 +41,8 @@ Three "core" codes are presented in this repository:
 - ```test_network_metrics.py```: code used to report the metrics of a saved model. Both angular loss and mod loss are reported.
 - ```generate_model_prediction.py```: visualization code, it creates a video with the network predictions (see .gif above for an extract of one such video).
 
+We also provide an example network in the ```examples/``` directory, which is our top-performing model on our validation split after 35 epochs of training.
+
 ## Data Storage Structure
 
 We suggest placing DSEC in the ```data/``` folder, following the next structure
@@ -62,7 +64,3 @@ data/
 ```
 
 The ```raw_files/``` folder contains the data downloaded from the DSEC webpage. After executing the code, different arrays will be created for each chunk, each stored in the corresponding folder. The number of frames per label used can be found in the subdirectories of the ```event_tensors/``` folder (in this case, 11 frames per timestamp = 9ms histograms).
-
-## References
-
-WIP
