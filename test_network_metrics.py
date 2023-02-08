@@ -4,7 +4,7 @@ import torch
 
 from spikingjelly.clock_driven import functional
 
-from network_3d.poolingNet_stereospike_real_cat_1res import NeuronPool_Separable_Pool3d
+from network_3d.poolingNet_cat_1res import NeuronPool_Separable_Pool3d
 
 from tqdm import tqdm
 
@@ -41,7 +41,7 @@ valid_dataloader = torch.utils.data.DataLoader(dataset = valid_dataset, batch_si
 # Create the network
 
 net = NeuronPool_Separable_Pool3d(multiply_factor = 35.).to(device)
-net.load_state_dict(torch.load('results/mono_k5_p2_1res_9ms_2pol_cat_wDA_lr2e-4/test_epoch34.pth'))
+net.load_state_dict(torch.load('examples/checkpoint_epoch34.pth'))
 
 mod_fcn = mod_loss_function
 lambda_mod = 1.
@@ -54,9 +54,6 @@ lambda_ang = 1.
 ###############################
 
 n_chunks_valid = len(valid_dataloader)
-
-#pred_sequence = []
-#label_sequence = []
 
 net.eval()
 
