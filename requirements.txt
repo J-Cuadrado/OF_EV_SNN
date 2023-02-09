@@ -3,7 +3,7 @@ numpy
 pandas
 torch
 torchvision
-spikingjelly==0.0.0.0.13
+spikingjelly==0.0.0.0.12
 opencv-python
 imageio
 numba
