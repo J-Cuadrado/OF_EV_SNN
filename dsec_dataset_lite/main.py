@@ -26,4 +26,4 @@ if __name__=='__main__':
 
         for sequence in flow_sequences:
 
-            generate_files(root = '/opt/Partage/DSEC', sequence = sequence, num_frames_per_ts = 11)
+            generate_files(root = '../data/dataset', sequence = sequence, num_frames_per_ts = 11)
