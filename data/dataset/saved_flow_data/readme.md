@@ -1,0 +1,4 @@
+- event tensors
+- mask tensors
+- gt tensors
+- sequence list
