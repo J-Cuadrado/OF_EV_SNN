@@ -12,6 +12,10 @@ os.environ["HDF5_PLUGIN_PATH"] = hdf5plugin.PLUGINS_PATH
 import h5py
 from typing import Dict, Tuple
 
+# CODE BORROWED AND ADAPTED FROM THE DSEC GIT REPOSITORY
+# (https://github.com/uzh-rpg/DSEC)
+
+
 def rectify_events(x: np.ndarray, y: np.ndarray, rectify_map):
 
 
