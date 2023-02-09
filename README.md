@@ -1,4 +1,4 @@
-# Optical Flow estimation from Event Cameras and Spiknig Neural Networks
+# Optical Flow estimation from Event Cameras and Spiking Neural Networks
 
 ## Introduction
 
