@@ -26,7 +26,7 @@ Below can be found an example of the results obtained with our model, evaluated 
 We suggest creating a Python virtual environment before running our codes. To do so, you can simply run:
 ```
 python3 -m venv OF_EV_SNN
-source OV_EV_SNN/bin/activate
+source OF_EV_SNN/bin/activate
 ```
 
 Once created, it is only needed to install the packages in the file ```requirements.txt```:
