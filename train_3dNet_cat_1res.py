@@ -55,7 +55,7 @@ forward_labels = 1
 
 # Create training dataset
 print("Creating Training Dataset ...")
-train_dataset = DSECDatasetLite(root = '/opt/Partage/DSEC/saved_flow_data', file_list = 'train_split_doubleseq2.csv', num_frames_per_ts = 11, stereo = False, transform = None)
+train_dataset = DSECDatasetLite(root = 'data/dataset/saved_flow_data', file_list = 'train_split_doubleseq.csv', num_frames_per_ts = 11, stereo = False, transform = None)
 
 # Define training dataloader
 batch_size = 1
@@ -65,7 +65,7 @@ train_dataloader = torch.utils.data.DataLoader(dataset = train_dataset, batch_si
 
 # Create validation dataset
 print("Creating Validation Dataset ...")
-valid_dataset = DSECDatasetLite(root = '/opt/Partage/DSEC/saved_flow_data', file_list = 'valid_split_doubleseq2.csv', num_frames_per_ts = 11, stereo = False, transform = None)
+valid_dataset = DSECDatasetLite(root = 'data/dataset/saved_flow_data', file_list = 'valid_split_doubleseq.csv', num_frames_per_ts = 11, stereo = False, transform = None)
 
 # Define validation dataloader
 valid_dataloader = torch.utils.data.DataLoader(dataset = valid_dataset, batch_size = 1, shuffle = False, drop_last = False, pin_memory = True)
