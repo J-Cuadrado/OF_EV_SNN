@@ -1,5 +1,7 @@
 # Optical Flow estimation from Event Cameras and Spiking Neural Networks
 
+Preprint of this work available at https://arxiv.org/abs/2302.06492
+
 ## Introduction
 
 We present here the code we have used to develop our Spiking Neural Network (SNN), capable of accurately estimating optical flow from event data. Our main contributions are:
