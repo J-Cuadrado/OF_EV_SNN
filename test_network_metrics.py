@@ -27,7 +27,7 @@ forward_labels = 1
 
 # Create validation dataset
 print("Creating Validation Dataset ...")
-valid_dataset = DSECDatasetLite(root = '/opt/Partage/DSEC/saved_flow_data', file_list = 'valid_split_doubleseq.csv', num_frames_per_ts = num_frames_per_ts, stereo = False, transform = None)
+valid_dataset = DSECDatasetLite(root = '/data/dataset/saved_flow_data', file_list = 'valid_split_doubleseq.csv', num_frames_per_ts = num_frames_per_ts, stereo = False, transform = None)
 
 # Define validation dataloader
 batch_size = 1
