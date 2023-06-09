@@ -1,6 +1,6 @@
 # Optical Flow estimation from Event Cameras and Spiking Neural Networks
 
-Preprint of this work available at https://arxiv.org/abs/2302.06492
+This work has been published in _Frontiers in Neuroscience_ (section _Neuromorphic Engineering)_. Our manuscript can be found on https://doi.org/10.3389/fnins.2023.1160034
 
 ## Introduction
 
