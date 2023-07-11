@@ -4,7 +4,7 @@ import torch
 
 from spikingjelly.clock_driven import functional
 
-from network_3d.poolingNet_cat_1res_mvsec import NeuronPool_Separable_Pool3d
+from poolingNet_cat_1res_mvsec import NeuronPool_Separable_Pool3d
 
 from tqdm import tqdm
 
@@ -29,8 +29,7 @@ split = 3
 
 # Create validation dataset
 print("Creating Validation Dataset ...")
-#valid_dataset = MVSECDataset(root = 'mvsec_dataset_v2/files', split = split, condition = 'test', transform = None)
-valid_dataset = MVSECDataset(root = '/opt/Partage/MVSEC/outdoor_day1_files', sequence = 1, transform = None)
+valid_dataset = MVSECDataset(root = 'files/saved', sequence = 1, transform = None)
 
 
 # Define validation dataloader
