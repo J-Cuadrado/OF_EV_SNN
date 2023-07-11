@@ -11,7 +11,7 @@ from torch.autograd import Variable
 from spikingjelly.clock_driven import functional
 from spikingjelly.clock_driven import neuron
 
-from network_3d.poolingNet_cat_1res_mvsec import NeuronPool_Separable_Pool3d
+from poolingNet_cat_1res_mvsec import NeuronPool_Separable_Pool3d
 
 
 from tqdm import tqdm
@@ -21,7 +21,6 @@ from data.data_augmentation_2d import *
 
 import numpy as np
 
-from pytorch_msssim import MS_SSIM
 
 from eval.vector_loss_functions import * 
 from eval.metrics_v2 import compute_metrics
@@ -67,8 +66,7 @@ split = 3
 
 # Create training dataset
 print("Loading Training Dataset ...")
-#train_dataset = MVSECDataset(root = 'mvsec_dataset_v2/files', split = split, condition = 'train', transform = None)
-train_dataset = MVSECDataset(root = '/home/javierca/mvsec_dataset_v2/files_parallel', sequence = 2, transform = "gt")
+train_dataset = MVSECDataset(root = 'files/saved', sequence = 2, transform = "gt")
 
 # Define training dataloader
 batch_size = 1
@@ -78,8 +76,7 @@ train_dataloader = torch.utils.data.DataLoader(dataset = train_dataset, batch_si
 
 # Create validation dataset
 print("Loading Validation Dataset ...")
-#valid_dataset = MVSECDataset(root = 'mvsec_dataset_v2/files', split = split, condition = 'valid', transform = None)
-valid_dataset = MVSECDataset(root = '/opt/Partage/MVSEC/outdoor_day1_files', sequence = 1, transform = "gt")
+valid_dataset = MVSECDataset(root = 'files/saved', sequence = 1, transform = "gt")
 
 # Define validation dataloader
 valid_dataloader = torch.utils.data.DataLoader(dataset = valid_dataset, batch_size = 1, shuffle = False, drop_last = False, pin_memory = True)
