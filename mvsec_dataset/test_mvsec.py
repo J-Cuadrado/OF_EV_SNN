@@ -81,6 +81,8 @@ for chunk, mask, label in tqdm(valid_dataloader):
     
     functional.reset_net(net)
 
+    ## The lines below are only needed for outside scenarios
+    ## Please comment these lines for indoor flying splits
     chunk[:, :, :, 160:, 35:311] = 0
     mask[:, 160:, 35:311] = False
     label[:, :, 160:, 35:311] = 0.
